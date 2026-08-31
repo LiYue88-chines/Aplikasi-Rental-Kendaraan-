@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Rental Kendaraan - Tema Abu Hitam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Rental Kendaraan QuickDrive</h1>
+            <p>Sewa kendaraan mudah, cepat, dan terpercaya</p>
+        </header>
+
+        <form id="rentalForm" onsubmit="handleProcessPayment(event)">
+            <div class="grid">
+                
+                <!-- BAGIAN 1: PILIH KENDARAAN -->
+                <div class="card">
+                    <h2>1. Pilih Kendaraan</h2>
+                    <div class="vehicle-list" id="vehicleContainer">
+                        <!-- Generasi data dari JavaScript -->
+                    </div>
+                    <div id="vehicleError" class="error-message">Silakan pilih salah satu kendaraan!</div>
+                </div>
+
+                <!-- BAGIAN 2: JADWAL & PELANGGAN -->
+                <div class="card">
+                    <h2>2. Detail Sewa & Pelanggan</h2>
+                    
+                    <div class="form-group">
+                        <label for="customerName">Nama Lengkap Pelanggan</label>
+                        <input type="text" id="customerName" placeholder="Masukkan nama sesuai KTP" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customerPhone">Nomor WhatsApp / Telepon</label>
+                        <input type="tel" id="customerPhone" placeholder="Contoh: 081234567890" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="startDate">Tanggal Mulai Sewa</label>
+                        <input type="date" id="startDate" required onchange="calculateTotal()">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="duration">Durasi Sewa (Hari)</label>
+                        <input type="number" id="duration" min="1" max="30" value="1" required oninput="calculateTotal()">
+                    </div>
+
+                    <div class="summary-box">
+                        <div class="summary-row">
+                            <span>Kendaraan:</span>
+                            <span id="sumVehicle">-</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Tarif / Hari:</span>
+                            <span id="sumRate">Rp 0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Durasi:</span>
+                            <span id="sumDuration">0 Hari</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total Biaya:</span>
+                            <span id="sumTotal">Rp 0</span>
+                        </div>
+                    </div>
+
+                    <div id="formError" class="error-message">Lengkapi semua data sebelum melanjutkan!</div>
+                    <button type="submit" class="btn">Proses Pembayaran</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+    <!-- MODAL STRUK PEMBAYARAN -->
+    <div class="modal" id="receiptModal">
+        <div class="modal-content">
+            <div class="receipt-header">
+                <span class="receipt-status">PEMBAYARAN BERHASIL</span>
+                <h2>Struk Sewa Kendaraan</h2>
+            </div>
+            
+            <div class="summary-box">
+                <div class="summary-row">
+                    <span>Nama Pelanggan:</span>
+                    <strong id="recName"></strong>
+                </div>
+                <div class="summary-row">
+                    <span>No. Telepon:</span>
+                    <span id="recPhone"></span>
+                </div>
+                <div class="summary-row">
+                    <span>Kendaraan:</span>
+                    <span id="recVehicle"></span>
+                </div>
+                <div class="summary-row">
+                    <span>Tgl Mulai:</span>
+                    <span id="recDate"></span>
+                </div>
+                <div class="summary-row">
+                    <span>Durasi Sewa:</span>
+                    <span id="recDuration"></span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total Pembayaran:</span>
+                    <span id="recTotal"></span>
+                </div>
+            </div>
+
+            <button class="btn" onclick="closeModal()">Tutup & Transaksi Baru</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

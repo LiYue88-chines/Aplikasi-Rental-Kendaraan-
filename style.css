@@ -1,0 +1,249 @@
+:root {
+    --bg-main: #121212;
+    --card-bg: #1e1e1e;
+    --card-border: #2d2d2d;
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --accent: #6b7280;
+    --accent-hover: #4b5563;
+    --accent-light: rgba(107, 114, 128, 0.2);
+    --selected-bg: #2a2d32;
+    --danger: #ef4444;
+    --success: #10b981;
+    --input-bg: #252525;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.5;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    color: var(--text-primary);
+    font-size: 2rem;
+    letter-spacing: 0.5px;
+}
+
+header p {
+    color: var(--text-secondary);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--card-border);
+}
+
+.card h2 {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--card-border);
+    padding-bottom: 8px;
+}
+
+/* Daftar Kendaraan */
+.vehicle-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.vehicle-item {
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #242424;
+}
+
+.vehicle-item:hover {
+    border-color: var(--accent);
+    background-color: #2c2c2c;
+}
+
+.vehicle-item.selected {
+    border-color: #9ca3af;
+    background-color: var(--selected-bg);
+    box-shadow: 0 0 0 1px #9ca3af;
+}
+
+.vehicle-info h3 {
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.vehicle-info p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.vehicle-price {
+    font-weight: bold;
+    color: #e5e7eb;
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--text-secondary);
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    transition: border-color 0.2s;
+}
+
+/* Fix ikon kalender pada browser Chrome/Edge tema gelap */
+::-webkit-calendar-picker-indicator {
+    filter: invert(0.8);
+}
+
+.form-group input:focus {
+    border-color: var(--accent);
+}
+
+.error-message {
+    color: var(--danger);
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: none;
+}
+
+/* Summary & Total */
+.summary-box {
+    background-color: #181818;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 15px;
+    border: 1px solid var(--card-border);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+.summary-row span:last-child {
+    color: var(--text-primary);
+}
+
+.summary-row.total {
+    border-top: 1px dashed var(--card-border);
+    padding-top: 8px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.btn {
+    width: 100%;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background-color: var(--accent-hover);
+}
+
+/* Modal Struk */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(3px);
+}
+
+.modal-content {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    max-width: 450px;
+    width: 90%;
+    border: 1px solid var(--card-border);
+}
+
+.receipt-header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.receipt-status {
+    display: inline-block;
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--success);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
